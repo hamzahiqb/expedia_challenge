@@ -1,0 +1,51 @@
+main_packages=( \
+    "bottleneck" \
+    "matplotlib" \
+    "numexpr" \
+    "numpy" \
+    "pandas" \
+    "pandas-profiling[notebook]" \
+    "plotly" \
+    "scikit-learn" \
+    "scipy" \
+    "seaborn" \
+    "statsmodels" \
+    "google-cloud-bigquery[bqstorage,pandas]" \
+    "google-api-python-client" \
+    "google-auth-oauthlib" \
+)
+
+dev_packages=( \
+    "aquirdturtle_collapsible_headings" \
+    "black" \
+    "dask-labextension" \
+    "ipywidgets" \
+    "isort" \
+    "jupyter-dash" \
+    "jupyterlab" \
+    "jupyterlab-git" \
+    "jupyterlab_code_formatter" \
+    "jupyterlab_widgets" \
+    "jupyterlab-system-monitor" \
+    "jupytext" \
+    "pre-commit" \
+    "rise" \
+    "tqdm" \ 
+    "watermark" \
+    "xeus-python" \
+)
+poetry add ${main_packages[*]}
+poetry add -D ${dev_packages[*]}
+
+poetry run pre-commit install
+
+
+if [ -x "$(command -v jupyter labextension)" ]; then
+    jupyter_exts=( \
+        "jupyterlab-chart-editor" \
+    )
+
+    echo "Installing Jupyterlab extentions:"
+    echo ${jupyter_exts[*]}
+    poetry run jupyter labextension install ${jupyter_exts[*]}
+fi
