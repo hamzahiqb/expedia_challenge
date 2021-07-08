@@ -1,5 +1,4 @@
-# ml_template
-A template for DS tools with precommit and jupyterlab + extensions
+# [Expedia challenge](https://www.kaggle.com/c/expedia-hotel-ranking-exercise)
 
 
 ## Local Development
